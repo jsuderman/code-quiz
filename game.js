@@ -89,11 +89,11 @@ function updateCounter() {
     // var minutes = Math.floor(time / 60);
     let seconds = time % 60;
 
-    timerSeconds.innerHTML = seconds
-    time--;
+    timerSeconds.innerHTML = startingSecond
+    startingSecond--;
 
-    if(time <= 0) {
-        clearInterval(time = 0)
+    if(startingSecond <= 0) {
+        clearInterval(startingSecond = 0)
     }
 }
 
