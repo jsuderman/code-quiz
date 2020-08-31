@@ -88,7 +88,6 @@ function showQuestions() {
         
         titleHeader.textContent = questions[questionNumber].title[i];
         questionEl.appendChild(titleHeader);
-
     }
     questionEl.innerText = questions[questionNumber].title
     console.log(questions)
