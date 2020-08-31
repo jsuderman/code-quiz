@@ -1,74 +1,53 @@
 // variables to manipulate the document
-var startButton = document.querySelector("#start-btn");
-var questionButton = document.querySelector("#question");
-var answerButton = document.querySelector("#answer-buttons");
-var timerButton = document.querySelector("#timer");
-var timerSeconds = document.querySelector("#seconds");
-var questionContainer = document.querySelector("#question-container");
-
-var startingSecond = 60;
-let time = startingSecond * 60;
-
-
-setInterval(updateCounter, 1000);
-
-startButton.addEventListener("click", startGame)
-
-
-
-
-
-
+var startButton = document.getElementById("start-btn");
+var questionEl = document.getElementById("question");
+var answerButton = document.getElementById("answer-buttons");
+var timerButton = document.getElementById("timer");
+var timerSeconds = document.getElementById("seconds");
+var questionContainer = document.getElementById("question-container");
+var answerMenu = document.querySelector("#answer-menu");
 
 var questions = [
     {
-       question: "Inside which HTML element do we put the JavaScript?",
-       answers: [
-           { text: "<js>", correct: false },
-           { text: "<script>", correct: true },
-           { text: "scripting", correct: false },
-           { text: "<javascript>", correct: false }
-       ]
+       title: "Inside which HTML element do we put the JavaScript?",
+       options: ["<js>", "<script>", "scripting", "<javascript>"],
+       correct: "<script>"
+           
     },
     {
-        question: "Inside which HTML element do we put the JavaScript?",
-       answers: [
-           { text: "<js>", correct: false },
-           { text: "<script>", correct: true },
-           { text: "scripting", correct: false },
-           { text: "<javascript>", correct: false }
-       ]
+        title: "Inside which HTML element do we put the JavaScript?",
+       options: ["<js>", "<script>", "scripting", "<javascript>"],
+       correct: "<script>"
     },
     {
-        question: "Inside which HTML element do we put the JavaScript?",
-       answers: [
-           { text: "<js>", correct: false },
-           { text: "<script>", correct: true },
-           { text: "scripting", correct: false },
-           { text: "<javascript>", correct: false }
-       ]
+        title: "Inside which HTML element do we put the JavaScript?",
+        options: ["<js>", "<script>", "scripting", "<javascript>"],
+        correct: "<script>"
+       
     },
     {
-        question: "Inside which HTML element do we put the JavaScript?",
-       answers: [
-           { text: "<js>", correct: false },
-           { text: "<script>", correct: true },
-           { text: "scripting", correct: false },
-           { text: "<javascript>", correct: false }
-       ]
+        title: "Inside which HTML element do we put the JavaScript?",
+       options: ["<js>", "<script>", "scripting", "<javascript>"],
+       correct: "<script>"
     },
     {
-        question: "Inside which HTML element do we put the JavaScript?",
-       answers: [
-           { text: "<js>", correct: false },
-           { text: "<script>", correct: true },
-           { text: "scripting", correct: false },
-           { text: "<javascript>", correct: false }
-       ]
+        title: "Inside which HTML element do we put the JavaScript?",
+        options: ["<js>", "<script>", "scripting", "<javascript>"],
+        correct: "<script>"
     },
-
 ]
 
+var questionNumber = 0;
+// vars for questions
+var questionTitle = questions[questionNumber].title
+
+// vars for answers
+var numberOfQuestions = questions.length
+var questionOptions = questions[questionNumber].options;
+
+
+var startingSecond = 90;
+let time = startingSecond * 60;
 
 
 
@@ -77,27 +56,56 @@ var questions = [
 
 
 
-function startGame() {
-    console.log("game started")
-    startButton.classList.add("hide")
-    questionContainer.classList.remove("hide")
-    
-    
-}
+startButton.addEventListener("click", startGame)
+setInterval(updateCounter, 1000);
 
 function updateCounter() {
-    // var minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-
+   
     timerSeconds.innerHTML = startingSecond
     startingSecond--;
 
     if(startingSecond <= 0) {
         clearInterval(startingSecond = 0)
     }
+    
+    
 }
 
-function nextQuestion() {
 
+function startGame() {
+    console.log("game started")
+    startButton.classList.add("hide")
+    questionContainer.classList.remove("hide")
+    showQuestions();
+    listOptions();
+    
+}
+
+function showQuestions() {
+    for (var i = 0; i < questions; i++) {
+        var titleHeader = document.createElement("h2");
+        titleHeader.setAttribute("class", "h2");
+        
+        titleHeader.textContent = questions[questionNumber].title[i];
+        questionEl.appendChild(titleHeader);
+    }
+    questionEl.innerText = questions[questionNumber].title
+    console.log(questions)
+}
+
+function listOptions() {
+    for (var i = 0; i < questionOptions.length; i++) {
+
+        var buttonAnswers = document.createElement("button");
+        buttonAnswers.setAttribute("class", "btn");
+        buttonAnswers.setAttribute("id", "answer-" + i);
+        buttonAnswers.textContent = questions[questionNumber].options[i];
+        answerMenu.appendChild(buttonAnswers);
+    }
+    
 
 }
+
+
+
+
