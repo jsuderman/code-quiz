@@ -101,10 +101,34 @@ function listOptions() {
         buttonAnswers.setAttribute("id", "answer-" + i);
         buttonAnswers.textContent = questions[questionNumber].options[i];
         answerMenu.appendChild(buttonAnswers);
+
+        // buttonAnswers.addEventListener("click", function(event) {
+        //     // if (event.target.matches(".answer-btn")) {
+        //     //     event.stopPropagation();
+        //     //     event.preventDefault();
+        //     // }
+        //     if (event.target.textContent === questions[questionNumber].correct) {
+        //         questionNumber = questionNumber + 1;
+        //     }
+        // })
     }
     
-
+    nextquestion();
+    
 }
+
+function nextquestion() {
+    for (var i = 0; i < questions; i++) {
+        var titleHeader = document.createElement("h2");
+        titleHeader.setAttribute("class", "h2");
+        
+        titleHeader.textContent = questions[questionNumber].title[i];
+        questionEl.appendChild(titleHeader);
+    }
+    questionEl.innerText = questions[questionNumber].title
+    console.log(questions)
+}
+
 
 
 
